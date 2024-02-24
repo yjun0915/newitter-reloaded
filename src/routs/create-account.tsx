@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import styled from "styled-components";
 import { auth } from "../firebase";
@@ -71,6 +71,9 @@ export default function CreateAccount() {
         password,
       );
       console.log(cridentials.user);
+      await updateProfile(cridentials.user, {
+        displayName: name,
+      });
     } catch (e) {
       //setError
     } finally {
