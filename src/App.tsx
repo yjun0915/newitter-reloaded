@@ -7,6 +7,7 @@ import CreateAccount from "./routs/create-account";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { useEffect, useState } from "react";
+import LoadingScreen from "./components/loading-screen";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +61,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      {isLoading ? <LoadingScreen/> : <RouterProvider router={router} />}
     </>
   );
 }
