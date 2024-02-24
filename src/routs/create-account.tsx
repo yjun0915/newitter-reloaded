@@ -33,21 +33,21 @@ export default function CreateAccount() {
     <Wrapper>
       <Form onSubmit={onSubmit}>
         <Input
-          onCahnge={onChange}
+          onChange={onChange}
           name="name"
           value={name}
           placeholder="Name"
           type="text"
         />
         <Input
-          onCahnge={onChange}
+          onChange={onChange}
           name="email"
           value={email}
           placeholder="Email"
           type="email"
         />
         <Input
-          onCahnge={onChange}
+          onChange={onChange}
           name="password"
           value={password}
           placeholder="Password"
