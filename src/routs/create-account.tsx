@@ -26,7 +26,14 @@ export default function CreateAccount() {
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(name, email, password);
+    try {
+      //•create an account
+      //• set-the name of the user.
+      //•redirect to the home page
+    } catch (e) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,7 +61,10 @@ export default function CreateAccount() {
           type="password"
           required
         />
-        <Input type="submit" value="Create Account" />
+        <Input
+          type="submit"
+          value={isLoading ? "Loading..." : "Create Account"}
+        />
       </Form>
     </Wrapper>
   );
