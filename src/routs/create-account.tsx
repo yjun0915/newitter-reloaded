@@ -12,6 +12,7 @@ export default function CreateAccount() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -31,6 +32,7 @@ export default function CreateAccount() {
       //• set-the name of the user.
       //•redirect to the home page
     } catch (e) {
+      //setError
     } finally {
       setLoading(false);
     }
