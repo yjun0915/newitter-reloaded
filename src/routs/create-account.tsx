@@ -28,6 +28,12 @@ const Input = styled.input`
   border: none;
   width: 100%;
   font-size: 16px;
+  &[type="submit"] {
+    cursor: pointer;
+    &: hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export default function CreateAccount() {
