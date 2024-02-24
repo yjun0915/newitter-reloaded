@@ -24,10 +24,14 @@ export default function CreateAccount() {
       setPassword(value);
     }
   };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(name, email, password);
+  };
 
   return (
     <Wrapper>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Input
           onCahnge={onChange}
           name="name"
