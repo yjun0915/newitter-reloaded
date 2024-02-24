@@ -1,11 +1,34 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  hheight: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 420px;
+  padding: 50px 0px;
+`;
 
-const Form = styled.form``;
+const Title = styled.h1`
+  font-size: 42px;
+`;
 
-const Input = styled.input``;
+const Form = styled.form`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+`;
+
+const Input = styled.input`
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+`;
 
 export default function CreateAccount() {
   const [isLoading, setLoading] = useState(false);
@@ -40,6 +63,7 @@ export default function CreateAccount() {
 
   return (
     <Wrapper>
+      <Title>Create Account 𝕏</Title>
       <Form onSubmit={onSubmit}>
         <Input
           onChange={onChange}
