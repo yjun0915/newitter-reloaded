@@ -50,18 +50,18 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const init = sync () => {
+  const init = async () => {
     //wait for firebase
-    setIsLoading(false)
-  }
-  useEffect(()=>{
-    init()
-  }, [])
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <>
       <GlobalStyles />
-      {isLoading ? <LoadingScreen/> : <RouterProvider router={router} />}
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </>
   );
 }
