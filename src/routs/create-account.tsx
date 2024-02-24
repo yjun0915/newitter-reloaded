@@ -14,7 +14,7 @@ export default function CreateAccount() {
   const [password, setPassword] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
-      target: { name: value },
+      target: { name, value },
     } = e;
     if (name === "name") {
       setName(value);
