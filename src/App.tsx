@@ -1,36 +1,38 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import Layout from "./components/layout"
-import Home from "./routs/home"
-import Profile from "./routs/profile"
-import Login from "./routs/login"
-import CreateAccount from "./routs/create-account"
-import { createGlobalStyle } from "styled-components"
-import reset from "styled-reset"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./components/layout";
+import Home from "./routs/home";
+import Profile from "./routs/profile";
+import Login from "./routs/login";
+import CreateAccount from "./routs/create-account";
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import { useEffect, useState } from "react";
+import LoadingScreen from "./components/loading-screen";
 
 const router = createBrowserRouter([
   {
-    path: "/", 
-    element: <Layout/>, 
+    path: "/",
+    element: <Layout />,
     children: [
       {
-        path: "", 
-        element: <Home/>, 
-      }, 
+        path: "",
+        element: <Home />,
+      },
       {
-        path: "/profile", 
-        element: <Profile/>, 
-      }, 
-    ]
-  }, 
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
+  },
   {
-    path: "/login", 
-    element: <Login/>,  
-  }, 
+    path: "/login",
+    element: <Login />,
+  },
   {
-    path: "/create-account", 
-    element: <CreateAccount/>, 
-  }
-])
+    path: "/create-account",
+    element: <CreateAccount />,
+  },
+]);
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -47,13 +49,22 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const init = async () => {
+    //wait for firebase
+    setIsLoading(false);
+    //setTimeout(setIsLoading, 2000);
+  };
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
