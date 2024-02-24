@@ -52,7 +52,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const init = async () => {
     //wait for firebase
-    setIsLoading(false);
+    //setIsLoading(false);
+    setTimeout(setIsLoading, 2000);
   };
   useEffect(() => {
     init();
