@@ -74,7 +74,7 @@ export default function CreateAccount() {
 
   return (
     <Wrapper>
-      <Title>Create Account 𝕏</Title>
+      <Title>Join 𝕏</Title>
       <Form onSubmit={onSubmit}>
         <Input
           onChange={onChange}
