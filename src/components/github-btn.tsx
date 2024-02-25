@@ -6,7 +6,9 @@ const Button = styled.span`
   color: black;
 `
 
-const Logo = styled.img``
+const Logo = styled.img`
+  height: 25px;
+`
 
 export default function GithubButton() {
   return (
