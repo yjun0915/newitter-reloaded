@@ -11,7 +11,12 @@ const Wrapper = styled.div`
   max-width: 860px;
 `
 
-const Menu = styled.div``
+const Menu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`
 
 const MenuItem = styled.div``
 
