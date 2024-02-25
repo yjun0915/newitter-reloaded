@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Button = styled.span`
@@ -14,6 +15,9 @@ const Button = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  &: hover {
+    opacity: 0.8;
+  }
 `
 
 const Logo = styled.img`
