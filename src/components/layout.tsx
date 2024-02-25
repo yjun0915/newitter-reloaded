@@ -18,9 +18,31 @@ const Menu = styled.div`
   gap: 20px;
 `
 
-const MenuItem = styled.div``
+const MenuItem = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  svg {
+    width: 30px;
+    fill: white;
+  }
+  &.log-out {
+    border-color: tomato;
+    svg {
+      fill: tomato;
+    }
+  }
+`
 
 export default function Layout() {
+  const onLogOut = async () => {
+    const ok = confirm("Are you sure you want to log out?")
+  }
   return (
     <Wrapper>
       <Menu>
@@ -52,7 +74,7 @@ export default function Layout() {
             </svg>
           </MenuItem>
         </Link>
-        <MenuItem>
+        <MenuItem onClick={onLogOut} className="log-out">
           <svg
             fill="currentColor"
             viewBox="0 0 20 20"
