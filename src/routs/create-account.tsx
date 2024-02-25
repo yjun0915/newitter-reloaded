@@ -67,6 +67,7 @@ export default function CreateAccount() {
   }
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError("")
     if (isLoading || name === "" || email === "" || password === "") return
     try {
       setLoading(true)
