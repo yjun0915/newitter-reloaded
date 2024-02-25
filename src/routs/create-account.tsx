@@ -1,89 +1,60 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useState } from "react";
-import styled from "styled-components";
-import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
-
-const Wrapper = styled.div`
-  hheight: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 420px;
-  padding: 50px 0px;
-`;
-
-const Title = styled.h1`
-  font-size: 42px;
-`;
-
-const Form = styled.form`
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: none;
-  width: 100%;
-  font-size: 16px;
-  &[type="submit"] {
-    cursor: pointer;
-    &: hover {
-      opacity: 0.8;
-    }
-  }
-`;
-
-const Error = styled.span`
-  font-weight: 600;
-  color: tomato;
-`;
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { useState } from "react"
+import { auth } from "../firebase"
+import { Link, useNavigate } from "react-router-dom"
+import { FirebaseError } from "firebase/app"
+import {
+  Error,
+  Form,
+  Input,
+  Switcher,
+  Title,
+  Wrapper,
+} from "../components/auth-components"
 
 export default function CreateAccount() {
-  const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigate = useNavigate()
+  const [isLoading, setLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
-    } = e;
+    } = e
     if (name === "name") {
-      setName(value);
+      setName(value)
     } else if (name === "email") {
-      setEmail(value);
+      setEmail(value)
     } else if (name === "password") {
-      setPassword(value);
+      setPassword(value)
     }
-  };
+  }
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (isLoading || name === "" || email === "" || password === "") return;
+    e.preventDefault()
+    setError("")
+    if (isLoading || name === "" || email === "" || password === "") return
     try {
-      setLoading(true);
+      setLoading(true)
       const cridentials = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
-      );
-      console.log(cridentials.user);
+      )
+      console.log(cridentials.user)
       await updateProfile(cridentials.user, {
         displayName: name,
-      });
-      navigate("/");
+      })
+      navigate("/")
     } catch (e) {
-      //setError
+      if (e instanceof FirebaseError) {
+        setError(e.message)
+      }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <Wrapper>
@@ -117,6 +88,9 @@ export default function CreateAccount() {
         />
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
+      <Switcher>
+        Already have an account? <Link to="/login"> Log in &rarr; </Link>
+      </Switcher>
     </Wrapper>
-  );
+  )
 }
