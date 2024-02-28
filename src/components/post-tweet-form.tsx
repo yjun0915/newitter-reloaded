@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore"
+import { addDoc, collection, updateDoc } from "firebase/firestore"
 import { useState } from "react"
 import styled from "styled-components"
 import { auth, db, storage } from "../firebase"
@@ -101,6 +101,9 @@ export default function PostTweetForm() {
         )
         const result = await uploadBytes(locaationRef, file)
         const url = await getDownloadURL(result.ref)
+        await updateDoc(doc, {
+          photo: url,
+        })
       }
     } catch (e) {
       console.log(e)
