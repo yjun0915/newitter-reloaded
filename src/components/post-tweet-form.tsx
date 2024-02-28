@@ -79,6 +79,7 @@ export default function PostTweetForm() {
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
     if (files && files.length === 1) {
+      if (files[0].size * Math.pow(10, -9) >= 1) return
       setFile(files[0])
     }
   }
