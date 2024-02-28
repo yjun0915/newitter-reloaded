@@ -4,11 +4,12 @@ import styled from "styled-components"
 import { db } from "../firebase"
 
 export interface ITweet {
+  id: string
   photo: string
   tweet: string
   userId: string
   username: string
-  updatedAt: number
+  createdAt: number
 }
 
 const Wrapper = styled.div``
@@ -21,7 +22,11 @@ export default function TimeLine() {
       orderBy("createdAt", "desc"),
     )
     const snapshot = await getDocs(tweetsQuery)
-    snapshot.docs.forEach((doc) => console.log(doc.data()))
+    const tweets = snapshot.docs.map((doc) => {
+      const { tweet, createdAt, userId, username, photo } = doc.data()
+      return { tweet, createdAt, userId, username, photo, id: doc.id }
+    })
+    setTweets(tweets)
   }
   useEffect(() => {
     fetchTweets()
