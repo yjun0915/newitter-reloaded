@@ -5,7 +5,7 @@ import { db } from "../firebase"
 
 export interface ITweet {
   id: string
-  photo: string
+  photo?: string
   tweet: string
   userId: string
   username: string
