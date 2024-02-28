@@ -70,13 +70,15 @@ export default function PostTweetForm() {
   const [isLoading, setLoading] = useState(false)
   const [tweet, setTweet] = useState("")
   const [file, setFile] = useState<File | null>(null)
-
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTweet(e.target.value)
+  }
   return (
     <Form>
       <TextArea placeholder="What is happening?" />
       <AttachFileButton htmlFor="file">Add photo</AttachFileButton>
       <AttachFileInput type="file" id="file" accept="image/*" />
-      <SubmitBtn type="submit" value="Post Tweet" />
+      <SubmitBtn type="submit" value={isLoading ? "Posting" : "Post Tweet"} />
     </Form>
   )
 }
