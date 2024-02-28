@@ -84,7 +84,7 @@ export default function PostTweetForm() {
     if (isLoading || tweet === "" || tweet.length > 180) return
   }
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <TextArea
         rows={5}
         maxLength={180}
