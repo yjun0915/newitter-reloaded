@@ -11,11 +11,21 @@ const Wrapper = styled.div`
 
 const Column = styled.div``
 
-const Username = styled.span``
+const Username = styled.span`
+  font-weight: 600;
+  font-size: 15px;
+`
 
-const Payload = styled.p``
+const Payload = styled.p`
+  margin: 10px 0px;
+  font-size: 15px;
+`
 
-const Photo = styled.img``
+const Photo = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+`
 
 export default function Tweet({ username, photo, tweet }: ITweet) {
   return (
