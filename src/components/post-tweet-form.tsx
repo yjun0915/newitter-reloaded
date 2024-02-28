@@ -74,7 +74,7 @@ export default function PostTweetForm() {
     setTweet(e.target.value)
   }
   const onFileChange = (e: React.ChangeEvent<HTMLImageElement>) => {
-    const { files } = e?.target
+    const { files } = e.target
     if (files && files.length === 1) {
       setFile(files[0])
     }
@@ -87,7 +87,12 @@ export default function PostTweetForm() {
         placeholder="What is happening?"
       />
       <AttachFileButton htmlFor="file">Add photo</AttachFileButton>
-      <AttachFileInput type="file" id="file" accept="image/*" />
+      <AttachFileInput
+        onChange={onFileChange}
+        type="file"
+        id="file"
+        accept="image/*"
+      />
       <SubmitBtn type="submit" value={isLoading ? "Posting" : "Post Tweet"} />
     </Form>
   )
