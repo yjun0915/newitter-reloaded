@@ -3,11 +3,11 @@ import { ITweet } from "./timeline"
 
 const Wrapper = styled.div``
 
-const Column = styled.span``
+const Column = styled.div``
 
-const Username = styled.text``
+const Username = styled.span``
 
-const Payload = styled.textarea``
+const Payload = styled.p``
 
 const Photo = styled.img``
 
