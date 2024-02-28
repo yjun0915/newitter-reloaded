@@ -36,7 +36,16 @@ const TextArea = styled.textarea`
   }
 `
 
-const AttachFileButton = styled.label``
+const AttachFileButton = styled.label`
+  padding: 10px 0px;
+  color: #1d6bf0;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #1d6bf0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+`
 
 const AttachFileInput = styled.input`
   display: none;
