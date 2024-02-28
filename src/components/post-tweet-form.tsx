@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components"
 
 const Form = styled.form`
@@ -66,6 +67,10 @@ const SubmitBtn = styled.input`
 `
 
 export default function PostTweetForm() {
+  const [isLoading, setLoading] = useState(false)
+  const [tweet, setTweet] = useState("")
+  const [file, setFile] = useState<File | null>(null)
+
   return (
     <Form>
       <TextArea placeholder="What is happening?" />
