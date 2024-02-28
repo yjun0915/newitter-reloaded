@@ -6,7 +6,9 @@ const TextArea = styled.textarea``
 
 const AttachFileButton = styled.label``
 
-const AttachFileInput = styled.input``
+const AttachFileInput = styled.input`
+  display: none;
+`
 
 const SubmitBtn = styled.input``
 
@@ -14,8 +16,8 @@ export default function PostTweetForm() {
   return (
     <Form>
       <TextArea placeholder="What is happening?" />
-      <AttachFileButton htmlFor="file">add photo</AttachFileButton>
-      <AttachFileInput id="file" accept="image/*" />
+      <AttachFileButton htmlFor="file">Add photo</AttachFileButton>
+      <AttachFileInput type="file" id="file" accept="image/*" />
       <SubmitBtn />
     </Form>
   )
