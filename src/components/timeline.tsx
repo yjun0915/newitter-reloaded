@@ -2,6 +2,7 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { db } from "../firebase"
+import Tweet from "./tweet"
 
 export interface ITweet {
   id: string
@@ -31,5 +32,11 @@ export default function TimeLine() {
   useEffect(() => {
     fetchTweets()
   }, [])
-  return <Wrapper>{JSON.stringify(tweets)}</Wrapper>
+  return (
+    <Wrapper>
+      {tweets.map((tweet) => (
+        <Tweet key={tweet.id} {...tweet} />
+      ))}
+    </Wrapper>
+  )
 }
