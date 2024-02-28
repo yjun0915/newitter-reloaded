@@ -73,6 +73,12 @@ export default function PostTweetForm() {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(e.target.value)
   }
+  const onFileChange = (e: React.ChangeEvent<HTMLImageElement>) => {
+    const { files } = e?.target
+    if (files && files.length === 1) {
+      setFile(files[0])
+    }
+  }
   return (
     <Form>
       <TextArea
