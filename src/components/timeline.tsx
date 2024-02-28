@@ -1,4 +1,4 @@
-import { collection, orderBy, query } from "firebase/firestore"
+import { collection, getDocs, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { db } from "../firebase"
@@ -20,6 +20,8 @@ export default function TimeLine() {
       collection(db, "tweets"),
       orderBy("createdAt", "desc"),
     )
+    const snapshot = await getDocs(tweetsQuery)
+    snapshot.docs.forEach((doc) => console.log(doc.data()))
   }
   useEffect(() => {
     fetchTweets()
