@@ -2,7 +2,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { useState } from "react"
 import styled from "styled-components"
 import { auth, db, storage } from "../firebase"
-import { ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
 const Form = styled.form`
   display: flex;
@@ -99,7 +99,8 @@ export default function PostTweetForm() {
           storage,
           `tweets/${user.uid}-${user.displayName}/${doc.id}`,
         )
-        await uploadBytes(locaationRef, file)
+        const result = await uploadBytes(locaationRef, file)
+        const url = await getDownloadURL(result.ref)
       }
     } catch (e) {
       console.log(e)
