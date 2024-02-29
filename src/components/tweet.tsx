@@ -30,8 +30,25 @@ const Photo = styled.img`
   border-radius: 15px;
 `
 
+const Buttons = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
 const DeleteButton = styled.button`
   background-color: tomato;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+`
+
+const EditButton = styled.button`
+  background-color: #1d6bf0;
   color: white;
   font-weight: 600;
   border: 0;
@@ -63,9 +80,12 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       <Column>
         <Username>{username}</Username>
         <Payload>{tweet}</Payload>
-        {user?.uid === userId ? (
-          <DeleteButton onClick={onDelete}>Delete</DeleteButton>
-        ) : null}
+        <Buttons>
+          {user?.uid === userId ? (
+            <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+          ) : null}
+          {user?.uid === userId ? <EditButton>Edit</EditButton> : null}
+        </Buttons>
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
     </Wrapper>
