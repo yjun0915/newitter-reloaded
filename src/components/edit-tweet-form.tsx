@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { Dispatch, SetStateAction, useState } from "react"
+import { doc, updateDoc } from "firebase/firestore"
+import { db } from "../firebase"
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,14 +51,17 @@ const DoneButton = styled.button`
 export default function EditTweetForm({
   tweet,
   photo,
+  id,
   setEditing,
 }: {
   tweet: string
   photo?: string
+  id: string
   setEditing: Dispatch<SetStateAction<boolean>>
 }) {
   const [newTweet, setTweet] = useState(tweet)
   const [newPhoto, setPhoto] = useState(photo)
+  const [file, setFile] = useState(null)
   const [isLoading, setLoading] = useState(false)
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(e.target.value)
@@ -65,6 +70,12 @@ export default function EditTweetForm({
     if (isLoading) return
     try {
       setLoading(true)
+      await updateDoc(doc(db, "tweets", id), {
+        tweet: newTweet,
+      })
+      setTweet("")
+      setPhoto("")
+      setFile(null)
     } catch (e) {
       console.error(e)
     } finally {

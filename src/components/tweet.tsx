@@ -86,7 +86,12 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       <Column>
         <Username>{username}</Username>
         {isEditing ? (
-          <EditTweetForm tweet={tweet} photo={photo} setEditing={setEditing} />
+          <EditTweetForm
+            tweet={tweet}
+            photo={photo}
+            id={id}
+            setEditing={setEditing}
+          />
         ) : (
           <Payload>{tweet}</Payload>
         )}
