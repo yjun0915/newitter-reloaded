@@ -1,10 +1,4 @@
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { db } from "../firebase"
@@ -24,6 +18,7 @@ const Wrapper = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
+  overflow-y: scroll;
 `
 
 export default function TimeLine() {

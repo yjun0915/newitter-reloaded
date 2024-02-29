@@ -3,6 +3,8 @@ import { ITweet } from "./timeline"
 import { auth, db, storage } from "../firebase"
 import { deleteDoc, doc } from "firebase/firestore"
 import { deleteObject, ref } from "firebase/storage"
+import { useState } from "react"
+import EditTweetForm from "./edit-tweet-form"
 
 const Wrapper = styled.div`
   display: grid;
@@ -30,6 +32,11 @@ const Photo = styled.img`
   border-radius: 15px;
 `
 
+const Buttons = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
 const DeleteButton = styled.button`
   background-color: tomato;
   color: white;
@@ -42,8 +49,21 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `
 
+const EditButton = styled.button`
+  background-color: #1d6bf0;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+`
+
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   const user = auth.currentUser
+  const [isEditing, setEditing] = useState(false)
   const onDelete = async () => {
     const ok = confirm("Are you sure you want to delete this tweet?")
     if (!ok || user?.uid !== userId) return
@@ -58,14 +78,31 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     } finally {
     }
   }
+  const onEdit = () => {
+    setEditing(!isEditing)
+  }
   return (
     <Wrapper>
       <Column>
         <Username>{username}</Username>
-        <Payload>{tweet}</Payload>
-        {user?.uid === userId ? (
-          <DeleteButton onClick={onDelete}>Delete</DeleteButton>
-        ) : null}
+        {isEditing ? (
+          <EditTweetForm
+            tweet={tweet}
+            photo={photo}
+            id={id}
+            setEditing={setEditing}
+          />
+        ) : (
+          <Payload>{tweet}</Payload>
+        )}
+        <Buttons>
+          {user?.uid === userId && !isEditing ? (
+            <EditButton onClick={onEdit}>EDIT</EditButton>
+          ) : null}
+          {user?.uid === userId && !isEditing ? (
+            <DeleteButton onClick={onDelete}>DELETE</DeleteButton>
+          ) : null}
+        </Buttons>
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
     </Wrapper>
