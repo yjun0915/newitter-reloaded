@@ -45,7 +45,8 @@ const DeleteButton = styled.button`
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
   const user = auth.currentUser
   const onDelete = async () => {
-    if (user?.uid !== userId) return
+    const ok = confirm("Are you sure you want to delete this tweet?")
+    if (!ok || user?.uid !== userId) return
     try {
       await deleteDoc(doc(db, "tweets", id))
       if (photo) {
