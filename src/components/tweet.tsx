@@ -88,13 +88,13 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         {isEditing ? <EditTweetForm /> : <Payload>{tweet}</Payload>}
         <Buttons>
           {user?.uid === userId && !isEditing ? (
-            <DeleteButton onClick={onDelete}>DELETE</DeleteButton>
-          ) : null}
-          {user?.uid === userId && !isEditing ? (
             <EditButton onClick={onEdit}>EDIT</EditButton>
           ) : (
             <EditButton onClick={onEdit}>DONE</EditButton>
           )}
+          {user?.uid === userId && !isEditing ? (
+            <DeleteButton onClick={onDelete}>DELETE</DeleteButton>
+          ) : null}
         </Buttons>
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
