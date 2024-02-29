@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { ITweet } from "./timeline"
-import { auth, db } from "../firebase"
+import { auth, db, storage } from "../firebase"
 import { deleteDoc, doc } from "firebase/firestore"
+import { deleteObject, ref } from "firebase/storage"
 
 const Wrapper = styled.div`
   display: grid;
@@ -47,6 +48,10 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     if (user?.uid !== userId) return
     try {
       await deleteDoc(doc(db, "tweets", id))
+      if (photo) {
+        const photoRef = ref(storage, `tweets/${user.uid}/${id}`)
+        await deleteObject(photoRef)
+      }
     } catch (e) {
       console.error(e)
     } finally {
