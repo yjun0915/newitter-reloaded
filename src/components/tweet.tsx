@@ -79,7 +79,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     }
   }
   const onEdit = () => {
-    setEditing(true)
+    setEditing(!isEditing)
   }
   return (
     <Wrapper>
@@ -87,12 +87,14 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         <Username>{username}</Username>
         {isEditing ? <EditTweetForm /> : <Payload>{tweet}</Payload>}
         <Buttons>
-          {user?.uid === userId ? (
+          {user?.uid === userId && !isEditing ? (
             <DeleteButton onClick={onDelete}>DELETE</DeleteButton>
           ) : null}
-          {user?.uid === userId ? (
+          {user?.uid === userId && !isEditing ? (
             <EditButton onClick={onEdit}>EDIT</EditButton>
-          ) : null}
+          ) : (
+            <EditButton onClick={onEdit}>DONE</EditButton>
+          )}
         </Buttons>
       </Column>
       <Column>{photo ? <Photo src={photo} /> : null}</Column>
