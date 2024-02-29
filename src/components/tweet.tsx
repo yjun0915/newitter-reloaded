@@ -86,16 +86,14 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       <Column>
         <Username>{username}</Username>
         {isEditing ? (
-          <EditTweetForm tweet={tweet} photo={photo} />
+          <EditTweetForm tweet={tweet} photo={photo} setEditing={setEditing} />
         ) : (
           <Payload>{tweet}</Payload>
         )}
         <Buttons>
           {user?.uid === userId && !isEditing ? (
             <EditButton onClick={onEdit}>EDIT</EditButton>
-          ) : (
-            <EditButton onClick={onEdit}>DONE</EditButton>
-          )}
+          ) : null}
           {user?.uid === userId && !isEditing ? (
             <DeleteButton onClick={onDelete}>DELETE</DeleteButton>
           ) : null}

@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border: none;
   border-radius: 15px;
@@ -33,12 +33,27 @@ const TextArea = styled.textarea`
   outline: none;
 `
 
+const DoneButton = styled.button`
+  background-color: #1d6bf0;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  font-size: 12px;
+  padding: 5px 10px;
+  width: fit-content;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+`
+
 export default function EditTweetForm({
   tweet,
   photo,
+  setEditing,
 }: {
   tweet: string
   photo?: string
+  setEditing: Dispatch<SetStateAction<boolean>>
 }) {
   const [newTweet, setTweet] = useState(tweet)
   const [newPhoto, setPhoto] = useState(photo)
@@ -55,6 +70,13 @@ export default function EditTweetForm({
         onChange={onChange}
         value={newTweet}
       />
+      <DoneButton
+        onClick={() => {
+          setEditing(false)
+        }}
+      >
+        DONE
+      </DoneButton>
     </Wrapper>
   )
 }
