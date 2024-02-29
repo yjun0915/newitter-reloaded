@@ -85,7 +85,11 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
     <Wrapper>
       <Column>
         <Username>{username}</Username>
-        {isEditing ? <EditTweetForm /> : <Payload>{tweet}</Payload>}
+        {isEditing ? (
+          <EditTweetForm tweet={tweet} photo={photo} />
+        ) : (
+          <Payload>{tweet}</Payload>
+        )}
         <Buttons>
           {user?.uid === userId && !isEditing ? (
             <EditButton onClick={onEdit}>EDIT</EditButton>
