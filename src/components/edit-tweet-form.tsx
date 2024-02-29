@@ -57,9 +57,20 @@ export default function EditTweetForm({
 }) {
   const [newTweet, setTweet] = useState(tweet)
   const [newPhoto, setPhoto] = useState(photo)
+  const [isLoading, setLoading] = useState(false)
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(newTweet)
     setTweet(e.target.value)
+  }
+  const onSubmit = async () => {
+    if (isLoading) return
+    try {
+      setLoading(true)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+      setEditing(false)
+    }
   }
   return (
     <Wrapper>
@@ -70,12 +81,8 @@ export default function EditTweetForm({
         onChange={onChange}
         value={newTweet}
       />
-      <DoneButton
-        onClick={() => {
-          setEditing(false)
-        }}
-      >
-        DONE
+      <DoneButton onClick={onSubmit}>
+        {isLoading ? "LOADING..." : "DONE"}
       </DoneButton>
     </Wrapper>
   )
