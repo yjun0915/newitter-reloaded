@@ -1,8 +1,9 @@
 import styled from "styled-components"
-import { auth, storage } from "../firebase"
+import { auth, db, storage } from "../firebase"
 import { useState } from "react"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { updateProfile } from "firebase/auth"
+import { collection, limit, orderBy, query, where } from "firebase/firestore"
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,6 +42,14 @@ const Name = styled.span`
 export default function Profile() {
   const user = auth.currentUser
   const [avatar, setAvatar] = useState(user?.photoURL)
+  const fetchTweets = async () => {
+    const tweetQuery = query(
+      collection(db, "tweets"),
+      where("userId", "==", user?.uid),
+      orderBy("createdAt", "desc"),
+      limit(25),
+    )
+  }
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
     if (!user) return
