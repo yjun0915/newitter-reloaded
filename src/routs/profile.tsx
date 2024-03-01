@@ -12,6 +12,7 @@ import {
   where,
 } from "firebase/firestore"
 import { ITweet } from "../components/timeline"
+import Tweet from "../components/tweet"
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,6 +46,12 @@ const AvatarInput = styled.input`
 
 const Name = styled.span`
   font-size: 22px;
+`
+
+const Tweets = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `
 
 export default function Profile() {
@@ -102,6 +109,11 @@ export default function Profile() {
         accept="image/*"
       />
       <Name>{user?.displayName ?? "Anonimous"}</Name>
+      <Tweets>
+        {tweets.map((tweet) => (
+          <Tweet key={tweet.id} {...tweet} />
+        ))}
+      </Tweets>
     </Wrapper>
   )
 }
