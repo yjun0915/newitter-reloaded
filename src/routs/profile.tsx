@@ -24,17 +24,22 @@ const AvatarUpload = styled.label`
   }
 `
 
-const AvatarImage = styled.img``
+const AvatarImage = styled.img`
+  width: 100%;
+`
 
 const AvatarInput = styled.input`
   display: none;
 `
 
-const Name = styled.span``
+const Name = styled.span`
+  font-size: 22px;
+`
 
 export default function Profile() {
   const user = auth.currentUser
   const [avatar, setAvatar] = useState(user?.photoURL)
+  const onAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {}
   return (
     <Wrapper>
       <AvatarUpload htmlFor="avatar">
@@ -51,7 +56,12 @@ export default function Profile() {
           </svg>
         )}
       </AvatarUpload>
-      <AvatarInput id="avatar" type="file" accept="image/*" />
+      <AvatarInput
+        onChange={onAvatarChange}
+        id="avatar"
+        type="file"
+        accept="image/*"
+      />
       <Name>{user?.displayName ?? "Anonimous"}</Name>
     </Wrapper>
   )
