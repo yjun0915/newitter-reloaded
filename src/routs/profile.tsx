@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { auth, db, storage } from "../firebase"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { updateProfile } from "firebase/auth"
 import {
@@ -86,6 +86,9 @@ export default function Profile() {
       })
     }
   }
+  useEffect(() => {
+    fetchTweets()
+  }, [])
   return (
     <Wrapper>
       <AvatarUpload htmlFor="avatar">
