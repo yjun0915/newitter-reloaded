@@ -50,6 +50,7 @@ const Name = styled.span`
 
 const Tweets = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
 `
