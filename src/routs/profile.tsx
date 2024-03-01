@@ -39,7 +39,12 @@ const Name = styled.span`
 export default function Profile() {
   const user = auth.currentUser
   const [avatar, setAvatar] = useState(user?.photoURL)
-  const onAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {}
+  const onAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target
+    if (files && files.length === 1) {
+      const file = files[0]
+    }
+  }
   return (
     <Wrapper>
       <AvatarUpload htmlFor="avatar">
