@@ -11,6 +11,7 @@ import {
   query,
   where,
 } from "firebase/firestore"
+import { ITweet } from "../components/timeline"
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,6 +50,7 @@ const Name = styled.span`
 export default function Profile() {
   const user = auth.currentUser
   const [avatar, setAvatar] = useState(user?.photoURL)
+  const [tweets, setTweets] = useState<ITweet[]>([])
   const fetchTweets = async () => {
     const tweetQuery = query(
       collection(db, "tweets"),
@@ -61,6 +63,7 @@ export default function Profile() {
       const { tweet, createdAt, userId, username, photo } = doc.data()
       return { tweet, createdAt, userId, username, photo, id: doc.id }
     })
+    setTweets(tweets)
   }
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
