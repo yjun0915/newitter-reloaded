@@ -37,7 +37,7 @@ export default function Profile() {
   const [avatar, setAvatar] = useState(user?.photoURL)
   return (
     <Wrapper>
-      <AvatarUpload>
+      <AvatarUpload htmlFor="avatar">
         {avatar ? (
           <AvatarImage src={avatar} />
         ) : (
@@ -51,7 +51,7 @@ export default function Profile() {
           </svg>
         )}
       </AvatarUpload>
-      <AvatarInput type="file" accept="image/*" />
+      <AvatarInput id="avatar" type="file" accept="image/*" />
       <Name>{user?.displayName ?? "Anonimous"}</Name>
     </Wrapper>
   )
