@@ -88,7 +88,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
         {isEditing ? (
           <EditTweetForm
             tweet={tweet}
-            photo={photo}
+            // photo={photo}
             id={id}
             setEditing={setEditing}
           />
