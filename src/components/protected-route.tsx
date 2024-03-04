@@ -12,5 +12,5 @@ export default function ProtectedRoute({
     return <Navigate to="/login" />
   }
 
-  return children ?? <div></div>
+  return <div>{children}</div>
 }
