@@ -17,7 +17,7 @@ const Button = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &: hover {
+  &:hover {
     opacity: 0.8;
   }
 `
