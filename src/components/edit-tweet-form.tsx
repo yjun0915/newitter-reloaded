@@ -50,18 +50,18 @@ const DoneButton = styled.button`
 
 export default function EditTweetForm({
   tweet,
-  photo,
+  // photo,
   id,
   setEditing,
 }: {
   tweet: string
-  photo?: string
+  // photo?: string
   id: string
   setEditing: Dispatch<SetStateAction<boolean>>
 }) {
   const [newTweet, setTweet] = useState(tweet)
-  const [newPhoto, setPhoto] = useState(photo)
-  const [file, setFile] = useState(null)
+  // const [newPhoto, setPhoto] = useState(photo)
+  // const [file, setFile] = useState(null)
   const [isLoading, setLoading] = useState(false)
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(e.target.value)
@@ -74,8 +74,8 @@ export default function EditTweetForm({
         tweet: newTweet,
       })
       setTweet("")
-      setPhoto("")
-      setFile(null)
+      // setPhoto("")
+      // setFile(null)
     } catch (e) {
       console.error(e)
     } finally {
